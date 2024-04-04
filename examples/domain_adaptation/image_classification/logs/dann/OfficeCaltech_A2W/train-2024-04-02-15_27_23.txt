@@ -1,0 +1,62 @@
+Namespace(arch='resnet50', batch_size=32, bottleneck_dim=256, data='OfficeCaltech', epochs=2, iters_per_epoch=2, log='logs/dann/OfficeCaltech_A2W', lr=0.01, lr_decay=0.75, lr_gamma=0.001, momentum=0.9, no_hflip=False, no_pool=False, norm_mean=(0.485, 0.456, 0.406), norm_std=(0.229, 0.224, 0.225), per_class_eval=False, phase='train', print_freq=1, ratio=[0.75, 1.3333333333333333], resize_size=224, root='data/OfficeCaltech', scale=[0.08, 1.0], scratch=False, seed=1, source=['A'], target=['W'], trade_off=1.0, train_resizing='default', val_resizing='default', weight_decay=0.001, workers=2)
+dann.py:40: UserWarning: You have chosen to seed training. This will turn on the CUDNN deterministic setting, which can slow down your training considerably! You may see unexpected behavior when restarting from checkpoints.
+  warnings.warn('You have chosen to seed training. '
+train_transform:  Compose(
+    Compose(
+    ResizeImage(size=(256, 256))
+    RandomResizedCrop(size=(224, 224), scale=(0.08, 1.0), ratio=(0.75, 1.3333), interpolation=PIL.Image.BILINEAR)
+)
+    RandomHorizontalFlip(p=0.5)
+    ToTensor()
+    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
+)
+val_transform:  Compose(
+    Compose(
+    ResizeImage(size=(256, 256))
+    CenterCrop(size=(224, 224))
+)
+    ToTensor()
+    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
+)
+=> using model 'resnet50'
+lr: 0.001
+Epoch: [0][0/2]	Time 15.16 (15.16)	Data  0.00 ( 0.00)	Loss   3.17 (  3.17)	Cls Acc 0.0 (0.0)	Domain Acc 51.6 (51.6)
+Epoch: [0][1/2]	Time 16.71 (15.94)	Data  0.01 ( 0.00)	Loss   2.12 (  2.64)	Cls Acc 87.5 (43.8)	Domain Acc 73.4 (62.5)
+Test: [ 0/10]	Time  6.911 ( 6.911)	Loss 2.1872e+00 (2.1872e+00)	Acc@1  25.00 ( 25.00)
+Test: [ 1/10]	Time  3.224 ( 5.067)	Loss 2.1290e+00 (2.1581e+00)	Acc@1  71.88 ( 48.44)
+Test: [ 2/10]	Time  3.053 ( 4.396)	Loss 2.1327e+00 (2.1496e+00)	Acc@1  71.88 ( 56.25)
+Test: [ 3/10]	Time  3.025 ( 4.053)	Loss 2.0868e+00 (2.1339e+00)	Acc@1  65.62 ( 58.59)
+Test: [ 4/10]	Time  3.105 ( 3.864)	Loss 2.0184e+00 (2.1108e+00)	Acc@1  93.75 ( 65.62)
+Test: [ 5/10]	Time  3.094 ( 3.735)	Loss 2.0544e+00 (2.1014e+00)	Acc@1  93.75 ( 70.31)
+Test: [ 6/10]	Time  3.559 ( 3.710)	Loss 2.0651e+00 (2.0962e+00)	Acc@1  81.25 ( 71.88)
+Test: [ 7/10]	Time  3.301 ( 3.659)	Loss 2.1144e+00 (2.0985e+00)	Acc@1  65.62 ( 71.09)
+Test: [ 8/10]	Time  3.546 ( 3.647)	Loss 2.1628e+00 (2.1056e+00)	Acc@1  43.75 ( 68.06)
+Test: [ 9/10]	Time  0.911 ( 3.373)	Loss 2.1842e+00 (2.1075e+00)	Acc@1  42.86 ( 67.46)
+ * Acc@1 67.458
+lr: 0.0009985026201965064
+Epoch: [1][0/2]	Time 22.05 (22.05)	Data  0.00 ( 0.00)	Loss   1.21 (  1.21)	Cls Acc 100.0 (100.0)	Domain Acc 84.4 (84.4)
+Epoch: [1][1/2]	Time 21.55 (21.80)	Data  0.01 ( 0.01)	Loss   0.67 (  0.94)	Cls Acc 100.0 (100.0)	Domain Acc 92.2 (88.3)
+Test: [ 0/10]	Time  8.164 ( 8.164)	Loss 1.8460e+00 (1.8460e+00)	Acc@1  96.88 ( 96.88)
+Test: [ 1/10]	Time  4.068 ( 6.116)	Loss 1.7719e+00 (1.8089e+00)	Acc@1 100.00 ( 98.44)
+Test: [ 2/10]	Time  3.750 ( 5.327)	Loss 1.7533e+00 (1.7904e+00)	Acc@1 100.00 ( 98.96)
+Test: [ 3/10]	Time  3.656 ( 4.909)	Loss 1.7038e+00 (1.7687e+00)	Acc@1 100.00 ( 99.22)
+Test: [ 4/10]	Time  3.715 ( 4.670)	Loss 1.6892e+00 (1.7528e+00)	Acc@1 100.00 ( 99.38)
+Test: [ 5/10]	Time  3.909 ( 4.544)	Loss 1.7265e+00 (1.7484e+00)	Acc@1 100.00 ( 99.48)
+Test: [ 6/10]	Time  3.637 ( 4.414)	Loss 1.6851e+00 (1.7394e+00)	Acc@1 100.00 ( 99.55)
+Test: [ 7/10]	Time  3.616 ( 4.314)	Loss 1.8027e+00 (1.7473e+00)	Acc@1 100.00 ( 99.61)
+Test: [ 8/10]	Time  3.761 ( 4.253)	Loss 1.8690e+00 (1.7608e+00)	Acc@1 100.00 ( 99.65)
+Test: [ 9/10]	Time  0.928 ( 3.920)	Loss 1.7938e+00 (1.7616e+00)	Acc@1 100.00 ( 99.66)
+ * Acc@1 99.661
+best_acc1 = 99.7
+Test: [ 0/10]	Time  8.530 ( 8.530)	Loss 1.8460e+00 (1.8460e+00)	Acc@1  96.88 ( 96.88)
+Test: [ 1/10]	Time  4.210 ( 6.370)	Loss 1.7719e+00 (1.8089e+00)	Acc@1 100.00 ( 98.44)
+Test: [ 2/10]	Time  3.773 ( 5.505)	Loss 1.7533e+00 (1.7904e+00)	Acc@1 100.00 ( 98.96)
+Test: [ 3/10]	Time  4.559 ( 5.268)	Loss 1.7038e+00 (1.7687e+00)	Acc@1 100.00 ( 99.22)
+Test: [ 4/10]	Time  4.467 ( 5.108)	Loss 1.6892e+00 (1.7528e+00)	Acc@1 100.00 ( 99.38)
+Test: [ 5/10]	Time  3.778 ( 4.886)	Loss 1.7265e+00 (1.7484e+00)	Acc@1 100.00 ( 99.48)
+Test: [ 6/10]	Time  3.802 ( 4.731)	Loss 1.6851e+00 (1.7394e+00)	Acc@1 100.00 ( 99.55)
+Test: [ 7/10]	Time  4.164 ( 4.660)	Loss 1.8027e+00 (1.7473e+00)	Acc@1 100.00 ( 99.61)
+Test: [ 8/10]	Time  3.673 ( 4.551)	Loss 1.8690e+00 (1.7608e+00)	Acc@1 100.00 ( 99.65)
+Test: [ 9/10]	Time  0.923 ( 4.188)	Loss 1.7938e+00 (1.7616e+00)	Acc@1 100.00 ( 99.66)
+ * Acc@1 99.661
+test_acc1 = 99.7
